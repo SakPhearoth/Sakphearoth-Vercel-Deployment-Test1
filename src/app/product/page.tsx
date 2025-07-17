@@ -9,7 +9,6 @@ async function fetchProduct(): Promise<Product[]> {
   return data.products;
 }
 
-// Product Page
 export const metadata: Metadata = {
   title: "Vercel Deployment",
   description:
@@ -18,14 +17,14 @@ export const metadata: Metadata = {
     title: "Product Page",
     description:
       "Product Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: "https://vercel.com",
+    url: "https://sakphearoth-vercel-deployment-test1.vercel.app/product",
     siteName: "Vercel",
     images: [
      {
-       url: "https://vercel.com/og.png",
+       url: "https://www.terawork.com/blog/wp-content/uploads/2022/11/ecommerce-mcommerce-featured-image-5fd09a3a5ff2a-1-1.png",
       width: 1200, 
       height: 630,
-      alt: "Vercel Open Graph Image",
+      alt: "Product Page Image",
      }
     ]
   },

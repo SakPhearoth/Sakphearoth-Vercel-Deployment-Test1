@@ -1,16 +1,15 @@
-import AboutPage from '@/components/about/AboutPage'
-import React from 'react'
+import AboutPage from "@/components/about/AboutPage";
+import React from "react";
 import type { Metadata } from "next";
 
 export default function page() {
   return (
     <div>
-      <AboutPage/>
+      <AboutPage />
     </div>
-  )
+  );
 }
 
-// About
 export const metadata: Metadata = {
   title: "Vercel Deployment",
   description:
@@ -19,15 +18,15 @@ export const metadata: Metadata = {
     title: "About Page",
     description:
       "About Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: "https://vercel.com",
+    url: "https://sakphearoth-vercel-deployment-test1.vercel.app/about",
     siteName: "Vercel",
     images: [
-     {
-       url: "https://vercel.com/og.png",
-      width: 1200, 
-      height: 630,
-      alt: "Vercel Open Graph Image",
-     }
-    ]
+      {
+        url: "https://static.vecteezy.com/system/resources/thumbnails/036/290/329/small_2x/about-us-metaphor-company-information-flat-illustration-template-business-profile-office-information-customer-support-our-team-about-company-vector.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Page Image",
+      },
+    ],
   },
 };

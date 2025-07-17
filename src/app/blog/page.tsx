@@ -6,7 +6,7 @@ export default function blog() {
   return (<div><BlogCard/></div>);
 }
 
-// Blog
+
 export const metadata: Metadata = {
   title: "Vercel Deployment",
   description:
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     title: "Blog Page",
     description:
       "Blog Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: "https://vercel.com",
+    url: "https://sakphearoth-vercel-deployment-test1.vercel.app/blog",
     siteName: "Vercel",
     images: [
      {
-       url: "https://vercel.com/og.png",
+       url: "https://www.webnode.com/blog/wp-content/uploads/2019/04/blog2.png",
       width: 1200, 
       height: 630,
-      alt: "Vercel Open Graph Image",
+      alt: "Blog Page Image",
      }
     ]
   },

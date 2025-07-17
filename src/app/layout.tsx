@@ -37,14 +37,14 @@ export const metadata: Metadata = {
     title: "Home Page",
     description:
       "Home Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: "https://vercel.com",
+    url: "https://sakphearoth-vercel-deployment-test1.vercel.app/",
     siteName: "Vercel",
     images: [
      {
-       url: "http://localhost:3000/images/NextjsLogo.jpg",
+       url: "https://sakphearoth-vercel-deployment-test1.vercel.app/images/NextjsLogo.jpg",
       width: 1200, 
       height: 630,
-      alt: "Vercel Open Graph Image",
+      alt: "Home Page Image",
      }
     ]
   },

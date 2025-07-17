@@ -1,24 +1,20 @@
-import AboutPage from '@/components/about/AboutPage'
-import React from 'react'
+import BlogCard from "@/components/blog/BlogCard";
+import React from "react";
 import type { Metadata } from "next";
 
-export default function page() {
-  return (
-    <div>
-      <AboutPage/>
-    </div>
-  )
+export default function blog() {
+  return (<div><BlogCard/></div>);
 }
 
-// About
+// Blog
 export const metadata: Metadata = {
   title: "Vercel Deployment",
   description:
     "Build and deploy on the AI Cloud. Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web.",
   openGraph: {
-    title: "About Page",
+    title: "Blog Page",
     description:
-      "About Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Blog Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     url: "https://vercel.com",
     siteName: "Vercel",
     images: [

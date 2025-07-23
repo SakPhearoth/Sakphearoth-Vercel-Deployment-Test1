@@ -7,7 +7,7 @@ export default async function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
           <div className="sm:text-center lg:text-left">
             <h1 className="text-4xl tracking-tight font-extrabold text-gray-800 sm:text-5xl md:text-6xl">
-              <span className="block xl:inline text-white">
+              <span className="block xl:inline">
                 Testing Website Deployment with Vercel
               </span>
               <span className="block text-indigo-600 xl:inline"></span>

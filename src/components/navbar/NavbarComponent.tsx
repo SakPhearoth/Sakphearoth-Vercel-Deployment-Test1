@@ -26,6 +26,7 @@ export default function NavbarComponent() {
             {item.name}
           </Link>
         ))}
+        
       </div>
     </nav>
   );

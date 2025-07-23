@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /private/dashbaord
+
+Sitemap: https://nextjs-fullstack-evening.vercel.app/sitemap.xml

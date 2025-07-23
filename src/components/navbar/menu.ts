@@ -20,5 +20,8 @@ export const MenuItems = [
     {
         name: "About",
         path: "/about",
+    },{
+        name: "Register",
+        path: "/register",
     },
 ]

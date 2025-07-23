@@ -1,72 +1,95 @@
-import { TodoType } from '@/types/todoType';
-import React, { use } from 'react';
+import { TodoType } from "@/types/todoType";
+import React, { use } from "react";
+import { Button } from "../ui/button";
+import { Trash } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
-export default function TodoComponent({ todos }: { todos: Promise<TodoType[]> }) {
+export default function TodoComponent({
+  todos,
+}: {
+  todos: Promise<TodoType[]>;
+}) {
   const allTodos = use(todos);
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-xl rounded-2xl overflow-hidden mt-10 mb-6 transition-all duration-300 hover:shadow-2xl">
-      {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-teal-500 to-teal-600">
-        <h1 className="text-white font-bold text-2xl tracking-tight">To-Do List</h1>
-      </div>
-
-      {/* Form */}
-      <form className="w-full max-w-sm mx-auto px-6 py-4">
-        <div className="flex items-center border-b-2 border-teal-300 py-2 transition-all duration-200 focus-within:border-teal-500">
-          <input
-            className="appearance-none bg-transparent border-none w-full text-gray-800 text-sm py-2 px-3 leading-tight focus:outline-none placeholder-gray-400"
-            type="text"
-            placeholder="Add a new task..."
-            aria-label="Add a task"
-          />
-          <button
-            className="flex-shrink-0 bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200 hover:shadow-md"
-            type="submit"
-          >
-            Add
-          </button>
+    <div className="max-w-4xl mx-auto px-4 py-20">
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+          <div>
+            <h1 className="text-gray-800 font-bold text-2xl uppercase">
+              To-Do List
+            </h1>
+          </div>
+          <form className="w-full md:w-1/2">
+            <div className="flex items-center border-b-2 border-teal-500 py-2">
+              <input
+                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text"
+                placeholder="Add a task"
+              />
+              <Button className="bg-teal-500 text-white hover:bg-teal-600 focus:outline-none">
+                Add
+              </Button>
+            </div>
+          </form>
         </div>
-      </form>
 
-      {/* Todo List */}
-      <ul className="divide-y divide-gray-100 px-6 pb-4">
-        {allTodos.map((todo) => (
-          <li
-            key={todo.id}
-            className="py-4 flex items-center group hover:bg-gray-50 transition-colors duration-150"
-          >
-            <input
-              id={`todo-${todo.id}`}
-              name={`todo-${todo.id}`}
-              type="checkbox"
-              defaultChecked={todo.completed}
-              className="h-5 w-5 text-teal-600 focus:ring-teal-500 border-gray-300 rounded cursor-pointer transition-colors duration-200"
-            />
-            <label
-              htmlFor={`todo-${todo.id}`}
-              className="ml-3 flex-1 flex flex-col cursor-pointer"
-            >
-              <span
-                className={`text-base font-medium text-gray-900 ${
-                  todo.completed ? 'line-through text-gray-500' : ''
-                }`}
-              >
-                {todo.todo}
-              </span>
-              <span className="text-xs font-light text-gray-500 mt-1">
-                Due on 4/1/23
-              </span>
-            </label>
-            <button
-              className="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-600 text-sm font-medium transition-opacity duration-200"
-              aria-label={`Delete ${todo.todo}`}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+        <ul className="divide-y divide-gray-200">
+          {allTodos.map((todo) => (
+            <li key={todo.id} className="py-4">
+              <div className="flex items-center">
+                <input
+                  id={`todo-${todo.id}`}
+                  name={`todo-${todo.id}`}
+                  type="checkbox"
+                  className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor={`todo-${todo.id}`}
+                  className="ml-3 text-gray-900 flex justify-between w-full items-center"
+                >
+                  <span className="text-lg font-medium">{todo.todo}</span>
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <span>Due on 4/1/23</span>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Trash className="text-red-500 cursor-pointer" />
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Are you sure you want to delete this task?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            delete this task.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction className="bg-red-500">
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                </label>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

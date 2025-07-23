@@ -9,7 +9,6 @@ async function getTodo(): Promise<TodoType[]> {
     throw new Error("Failed to fetch data");
   }
   const data = await res.json();
-  // console.log(data.todos as TodoType[]);
   return data.todos as TodoType[];
 }
 
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Todos Page",
     description:
-      "Todos Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Todos Page description lorem ipsum dolor sit amet...",
     url: "https://sakphearoth-vercel-deployment-test1.vercel.app/todos",
     siteName: "Vercel",
     images: [
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Todo Page Image",
-      },
+      }
     ],
   },
 };
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
 export default function page() {
   const todos = getTodo();
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center pt-12 px-4 pb-20">
       <Suspense fallback={<div>Loading...</div>}>
         <TodoComponent todos={todos} />
       </Suspense>

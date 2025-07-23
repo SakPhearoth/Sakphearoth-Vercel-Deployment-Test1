@@ -1,52 +1,44 @@
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import NavbarComponent from "@/components/navbar/NavbarComponent";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import Error from "./error";
 import { Suspense } from "react";
 import Loading from "./loading";
-import localFont from "next/font/local";
+import NavbarWrapper from "@/components/navbar/NavbarWrapper";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-});
+})
 
 const preahvihear = localFont({
   src: "../../public/fonts/Preahvihear-Regular.ttf",
   variable: "--font-preahvihear",
-});
+})
 
 export const metadata: Metadata = {
-  title: "Vercel Deployment",
-  description:
-    "Build and deploy on the AI Cloud. Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web.",
+  title: "Home",
+  description: "Build and deploy on the AI Cloud. Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web.",
+  keywords: ["Next.js", "Fullstack", "Vercel", "AI Cloud", "Web Development"],
   openGraph: {
-    title: "Home Page",
-    description:
-      "Home Page description lorem* ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: "https://sakphearoth-vercel-deployment-test1.vercel.app/",
-    siteName: "Vercel",
+    title: "Home",
+    description: "Build and deploy on the AI Cloud. Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web.",
+    url: "https://nextjs-fullstack-evening.vercel.app/",
+    siteName: "Home",
     images: [
-     {
-       url: "https://sakphearoth-vercel-deployment-test1.vercel.app/images/NextjsLogo.jpg",
-      width: 1200, 
-      height: 630,
-      alt: "Home Page Image",
-     }
-    ]
+      {
+        url: "https://i.ytimg.com/vi/6jQdZcYY8OY/maxresdefault.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Open Graph Image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
   },
 };
 
@@ -57,12 +49,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${comfortaa.variable}  ${preahvihear.variable} antialiased`} >
+      <body
+        className={`${comfortaa.variable} ${preahvihear.variable} antialiased`}
+      >
         <ErrorBoundary errorComponent={Error}>
-          <NavbarComponent />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <NavbarWrapper />
+          <Suspense fallback={<Loading/>}>
+            {children}
+          </Suspense>
         </ErrorBoundary>
       </body>
     </html>
   );
 }
+
+

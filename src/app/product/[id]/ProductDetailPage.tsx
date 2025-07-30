@@ -1,41 +1,19 @@
 'use client'
 import Loading from '@/app/loading';
-import type { ProductDetail } from '@/types/product';
+import { useGetProductByIdQuery } from '@/redux/services/product/productsApi';
 import Image from 'next/image';
 import { useParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
 
 export default function ProductDetailPage() {
     const { id } = useParams();
-    const [product, setProduct] = useState<ProductDetail | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const productId = parseInt(id as string);
+    const { data: product, isLoading, error } = useGetProductByIdQuery(productId);
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_API}products/${id}`)
-                if (!res.ok) {
-                    setProduct(null)
-                    return
-                }
-                const data = await res.json()
-                if (!data || !data.id) {
-                    setProduct(null)
-                } else {
-                    setProduct(data)
-                }
-            } catch (error) {
-                console.error('Failed to fetch product:', error)
-                setProduct(null)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchProduct()
-    }, [id])
-
-    if (loading) {
+    if (isLoading) {
         return <Loading />
+    }
+    if (error || !product) {
+        return <div>Error fetching product details</div>
     }
 
     return (
@@ -45,22 +23,33 @@ export default function ProductDetailPage() {
                     {/* <!-- Product Images --> */}
                     <div className="w-full md:w-1/2 px-4 mb-8">
                         <Image
+                            crossOrigin='anonymous'
                             width={500}
                             height={500}
                             unoptimized
-                            src={product?.thumbnail || "https://via.placeholder.com/500"}
+                            src={product?.images[0]}
+                            onError={(e) => {
+                                (e.target as HTMLImageElement).src = 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'; // Fallback image
+                            }}
                             alt="Product"
                             className="w-full h-auto rounded-lg shadow-md mb-4"
                         />
                         <div className="flex gap-4 py-4 justify-center overflow-x-auto">
-                            <Image
-                                width={100}
-                                height={100}
-                                unoptimized
-                                src={product?.thumbnail || "https://via.placeholder.com/100"}
-                                alt="Thumbnail 1"
-                                className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                            />
+                            {product?.images.map((image, index) => (
+                                <Image
+                                crossOrigin='anonymous'
+                                    key={index}
+                                    width={100}
+                                    height={100}
+                                    unoptimized
+                                    src={image}
+                                    alt={`Thumbnail ${index + 1}`}
+                                    className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
+                                    onError={(e) => {
+                                (e.target as HTMLImageElement).src = 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'; // Fallback image
+                            }}
+                                />
+                            ))}
                         </div>
                     </div>
 

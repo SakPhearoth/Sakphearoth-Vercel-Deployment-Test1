@@ -3,9 +3,18 @@ export type Product = {
     title: string;
     description: string;
     price: number;
-    discountPercentage: number;
-    category: string;
-    thumbnail: string;
+    category: Category;
+    images: string[];
+    slug: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export type Category = {
+    id: number;
+    name: string;
+    image: string;
+    slug: string;
 }
 
 export type ProductDetail = {
@@ -13,9 +22,9 @@ export type ProductDetail = {
     title: string;
     description: string;
     price: number;
-    discountPercentage: number;
-    category: string;
-    thumbnail: string;
-    stock: number;
-    brand: string;
+    category: Category;
+    images: string[];
+    slug: string;
+    createdAt: string;
+    updatedAt: string;
 }

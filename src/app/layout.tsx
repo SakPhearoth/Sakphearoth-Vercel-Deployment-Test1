@@ -6,7 +6,8 @@ import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import Error from "./error";
 import { Suspense } from "react";
 import Loading from "./loading";
-import NavbarWrapper from "@/components/navbar/NavbarWrapper";
+import WrapperNavbar from "@/components/navbar/NavbarWrapper";
+import { StoreProviders } from "@/redux/StoreProviders";
 
 
 const comfortaa = Comfortaa({
@@ -52,15 +53,16 @@ export default function RootLayout({
       <body
         className={`${comfortaa.variable} ${preahvihear.variable} antialiased`}
       >
-        <ErrorBoundary errorComponent={Error}>
-          <NavbarWrapper />
+        <StoreProviders>
+          <ErrorBoundary errorComponent={Error}>
+          <WrapperNavbar />
           <Suspense fallback={<Loading/>}>
             {children}
           </Suspense>
         </ErrorBoundary>
+        </StoreProviders>
+        
       </body>
     </html>
   );
 }
-
-
